@@ -17,6 +17,11 @@ public class BlogApi {
         //con estas barritas conviertes el texto a JSON
     }
 
+    @GetMapping("/saludar/buenosdias")
+    public ResponseEntity<String> saludarPorLaMañana() {
+        return new ResponseEntity<>("\"Hola, buenos días desde el blog\"", HttpStatus.OK); 
+    }
+
     @GetMapping("/aleatorio") //endpoint
     public ResponseEntity<Integer> aleatorio() {
         int numeroAleatorio = (int)(Math.random()*100) +1;
@@ -29,6 +34,6 @@ public class BlogApi {
         @PathVariable int max) {
             int numeroAleatorio = (int) (Math.random() * (max - min + 1)) + min;
             return ResponseEntity.ok(numeroAleatorio);
-        }
+    }
 
 }
