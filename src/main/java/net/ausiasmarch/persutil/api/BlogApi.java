@@ -12,7 +12,14 @@ public class BlogApi {
     
     @GetMapping("/saludar")
     public ResponseEntity<String> saludar() {
-        return new ResponseEntity<>("Hola desde el blog", HttpStatus.OK);
+        return new ResponseEntity<>("\"Hola desde el blog\"", HttpStatus.OK); 
+        //con estas barritas conviertes el texto a JSON
+    }
+
+    @GetMapping("/aleatorio") //endpoint
+    public ResponseEntity<Integer> aleatorio() {
+        int numeroAleatorio = (int)(Math.random()*100) +1;
+        return ResponseEntity.ok(numeroAleatorio);
     }
 
 }
