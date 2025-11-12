@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,6 +56,8 @@ public class BlogApi {
         return ResponseEntity.ok(oBlogService.rellenaBlog());
     }
 
+    //MI EJERCICIO DE LAS 25 PALABRAS ALEATORIAS:
+
     @GetMapping("/frasealeatoria")
     public ResponseEntity<String[]> fraseAleatoria() {
         BlogEntity oBlogEntity = new BlogEntity();
@@ -66,5 +70,18 @@ public class BlogApi {
         return new ResponseEntity<>(frase, HttpStatus.OK);
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BlogEntity> get (@PathVariable Long id) {
+        return ResponseEntity.ok(oBlogService.get(id));
+    }
+
+    //crear post
+    @PostMapping("/")
+    public ResponseEntity<Long> create(@RequestBody BlogEntity blogEntity) {
+        return ResponseEntity.ok(oBlogService.create(blogEntity));
+    }
+
+
 
 }
