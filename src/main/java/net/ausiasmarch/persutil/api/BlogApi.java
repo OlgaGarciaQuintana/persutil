@@ -23,7 +23,6 @@ public class BlogApi {
     @Autowired
     BlogService oBlogService;
 
-    @Autowired
     BlogEntity oBlogEntity;
 
     @GetMapping("/saludar")
