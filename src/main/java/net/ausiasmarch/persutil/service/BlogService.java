@@ -3,6 +3,8 @@ package net.ausiasmarch.persutil.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +92,8 @@ public class BlogService {
         return oBlogRepository.count();
     }
 
+    // ----------------------------CRUD---------------------------------
+
     public BlogEntity get(Long id) {
         return oBlogRepository.findById(id).orElseThrow(() -> new RuntimeException("Blog not found"));
     }
@@ -100,5 +104,28 @@ public class BlogService {
         oBlogRepository.save(blogEntity);
         return blogEntity.getId();
     }
-        
+
+    public Long update(BlogEntity blogEntity) {
+        BlogEntity existingBlog = oBlogRepository.findById(blogEntity.getId())
+                .orElseThrow(() -> new RuntimeException("Blog not found"));
+        existingBlog.setTitulo(blogEntity.getTitulo());
+        existingBlog.setContenido(blogEntity.getContenido());
+        existingBlog.setEtiquetas(blogEntity.getEtiquetas());
+        existingBlog.setFechaModificacion(LocalDateTime.now());
+        oBlogRepository.save(existingBlog);
+        return existingBlog.getId();
+    }
+
+    public Long delete(Long id) {
+        oBlogRepository.deleteById(id);
+        return id;
+    }
+
+    public Page<BlogEntity> getPage(Pageable oPageable) {
+        return oBlogRepository.findAll(oPageable);
+    }
+
+    public Long count() {
+        return oBlogRepository.count();
+    }   
 }
