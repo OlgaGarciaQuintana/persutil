@@ -23,7 +23,7 @@ public class BlogApi {
     @Autowired
     BlogService oBlogService;
 
-    BlogEntity oBlogEntity;
+    
 
     @GetMapping("/saludar")
     public ResponseEntity<String> saludar() {
@@ -56,6 +56,7 @@ public class BlogApi {
 
     @GetMapping("/frasealeatoria")
     public ResponseEntity<String[]> fraseAleatoria() {
+        BlogEntity oBlogEntity = new BlogEntity();
         String[] frase = oAleatorioService.GenerarFraseAleatoria();
         oBlogEntity.setTitulo(frase[0] + " " + frase[1] + " " + frase[2] + " " + frase[3] + " " + frase[4]);
         frase = oAleatorioService.GenerarFraseAleatoria();
