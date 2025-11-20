@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.persutil.service.AleatorioService;
+import net.ausiasmarch.persutil.service.GarciaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -14,6 +15,9 @@ public class GarciaApi {
 
     @Autowired
     AleatorioService oAleatorioService;
+
+    @Autowired
+    GarciaService garciaService;
 
     
     
