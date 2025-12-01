@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 01-12-2025 a las 11:19:43
+-- Tiempo de generación: 01-12-2025 a las 11:24:33
 -- Versión del servidor: 8.4.5
 -- Versión de PHP: 8.2.28
 
@@ -252,6 +252,21 @@ CREATE TABLE `tarea` (
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `uski_libro_visita`
+--
+
+CREATE TABLE `uski_libro_visita` (
+  `id` bigint NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `comentario` varchar(1024) NOT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_modificacion` timestamp NULL DEFAULT NULL,
+  `esta_publicado` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -348,6 +363,12 @@ ALTER TABLE `tarea`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `uski_libro_visita`
+--
+ALTER TABLE `uski_libro_visita`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -439,5 +460,11 @@ ALTER TABLE `soares`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `uski_libro_visita`
+--
+ALTER TABLE `uski_libro_visita`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 COMMIT;
