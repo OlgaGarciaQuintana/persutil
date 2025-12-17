@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.persutil.entity.GarciaEntity;
+import net.ausiasmarch.persutil.entity.GarciaEntity;
+import net.ausiasmarch.persutil.exception.ResourceNotFoundException;
+import net.ausiasmarch.persutil.exception.UnauthorizedException;
 import net.ausiasmarch.persutil.repository.GarciaRepository;
 
 @Service
@@ -127,5 +130,23 @@ public class GarciaService {
             GarciaRepository.save(garciaEntity);
         }
         return cantidad;
+    }
+
+    public Long publicar(Long id) {
+        GarciaEntity existingGarcia = GarciaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found"));
+        existingGarcia.setPublicado(true);
+        existingGarcia.setFechaModificacion(LocalDateTime.now());
+        GarciaRepository.save(existingGarcia);
+        return existingGarcia.getId();
+    }
+
+    public Long despublicar(Long id) {
+        GarciaEntity existingGarcia = GarciaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found"));
+        existingGarcia.setPublicado(false);
+        existingGarcia.setFechaModificacion(LocalDateTime.now());
+        GarciaRepository.save(existingGarcia);
+        return existingGarcia.getId();
     }
 }

@@ -74,4 +74,16 @@ public class GarciaApi {
         return ResponseEntity.ok(GarciaService.count());
     }
 
+    // publicar post
+    @PutMapping("/publicar/{id}")
+    public ResponseEntity<Long> publicar(@PathVariable Long id) {
+        return ResponseEntity.ok(GarciaService.publicar(id));
+    }
+
+    // despublicar post
+    @PutMapping("/despublicar/{id}")
+    public ResponseEntity<Long> despublicar(@PathVariable Long id) {
+        return ResponseEntity.ok(GarciaService.despublicar(id));
+    }
+
 }
