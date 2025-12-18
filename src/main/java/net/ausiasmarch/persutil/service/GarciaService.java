@@ -74,6 +74,10 @@ public class GarciaService {
             garciaEntity.setProgreso("Sin progreso");
         }
 
+        if (garciaEntity.getPublicado() == null) {
+            garciaEntity.setPublicado(false);
+        }
+
         GarciaRepository.save(garciaEntity);
         return garciaEntity.getId();
     }
@@ -84,6 +88,7 @@ public class GarciaService {
 
         existingGarcia.setTitulo(garciaEntity.getTitulo());
         existingGarcia.setObjetivo(garciaEntity.getObjetivo());
+        existingGarcia.setFechaModificacion(LocalDateTime.now());
 
         if (garciaEntity.getProgreso() != null && garciaEntity.getProgreso().length() >= 3) {
             existingGarcia.setProgreso(garciaEntity.getProgreso());
@@ -98,6 +103,10 @@ public class GarciaService {
         existingGarcia.setFechaFinal(garciaEntity.getFechaFinal() != null
                 ? garciaEntity.getFechaFinal()
                 : existingGarcia.getFechaFinal());
+
+        if (garciaEntity.getPublicado() != null) {
+            existingGarcia.setPublicado(garciaEntity.getPublicado());
+        }
 
         GarciaRepository.save(existingGarcia);
         return existingGarcia.getId();
@@ -126,10 +135,15 @@ public class GarciaService {
             garciaEntity.setProgreso(PROGRESOS[indiceAleatorio]);
             garciaEntity.setFechaInicio(LocalDateTime.now());
             garciaEntity.setFechaFinal(LocalDate.now().plusDays(random.nextInt(90)));
+            garciaEntity.setPublicado(random.nextBoolean());
 
             GarciaRepository.save(garciaEntity);
         }
         return cantidad;
+    }
+
+    public Page<GarciaEntity> getPagePublicados(Pageable oPageable) {
+        return GarciaRepository.findByPublicado(true, oPageable);
     }
 
     public Long publicar(Long id) {
@@ -148,5 +162,11 @@ public class GarciaService {
         existingGarcia.setFechaModificacion(LocalDateTime.now());
         GarciaRepository.save(existingGarcia);
         return existingGarcia.getId();
+    }
+
+    public Long deleteAll() {
+        long count = GarciaRepository.count();
+        GarciaRepository.deleteAll();
+        return count;
     }
 }
