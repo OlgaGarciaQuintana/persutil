@@ -158,7 +158,7 @@ CREATE TABLE `garcia` (
   `fecha_inicio` datetime NOT NULL,
   `fecha_modificacion` datetime DEFAULT NULL,
   `fecha_final` datetime NOT NULL,
-  `progreso` varchar(1000) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
+  `progreso` varchar(1000) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `publico` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
