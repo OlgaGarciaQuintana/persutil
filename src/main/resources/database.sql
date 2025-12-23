@@ -251,11 +251,13 @@ CREATE TABLE `recurso` (
 
 CREATE TABLE `sempertegui_pelicula` (
   `id` bigint NOT NULL,
-  `nombre` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `genero` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `titulo` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `generos` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `sinopsis` varchar(1024) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `director` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `puntuacion` int NOT NULL,
   `anyo` year NOT NULL,
+  `publicado` tinyint NOT NULL DEFAULT '0',
   `fecha_creacion` datetime NOT NULL,
   `fecha_modificacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
@@ -417,8 +419,7 @@ ALTER TABLE `recurso`
 -- Indexes for table `sempertegui_pelicula`
 --
 ALTER TABLE `sempertegui_pelicula`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `soares`
